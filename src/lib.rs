@@ -74,9 +74,12 @@ pub fn zip_hash(
 pub fn hash_to_array(
     map: &HashMap<String, String>,
 ) -> Vec<(String, String)> {
-    map.iter()
-        .map(|(k, v)| (k.clone(), v.clone()))
-        .collect()
+    let mut v: Vec<(String, String)> = 
+        map.iter().map(|(k, v)| (k.clone(), v.clone())).collect();
+
+        v.sort_by(|a, b| a.0.cmp(&b.0));
+        
+        v
 }
 
 
